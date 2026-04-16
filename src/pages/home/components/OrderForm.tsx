@@ -32,6 +32,7 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
   const sendOrderToGoogleSheet = async (orderData: any) => {
     try {
       console.log('Sending order data:', orderData);
+      console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbw7lDU96Yxq34ZrQc_ujYyhJA0uE1L6vw1bc2JutalM-xSZzoBjIKrBi30q77eG6R5DZw/exec');
       
       const response = await fetch('https://script.google.com/macros/s/AKfycbw7lDU96Yxq34ZrQc_ujYyhJA0uE1L6vw1bc2JutalM-xSZzoBjIKrBi30q77eG6R5DZw/exec', {
         method: 'POST',
@@ -42,10 +43,22 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
         body: JSON.stringify(orderData)
       });
       
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
+      
+      if (!response.ok) {
+        const errorText = await response.text();
+        console.error('HTTP Error:', response.status, errorText);
+        alert('Erreur de connexion au serveur. Veuillez réessayer plus tard.');
+        return;
+      }
+      
+      const responseText = await response.text();
       console.log('Order sent to Google Sheet successfully');
-      console.log('Response:', response);
+      console.log('Response:', responseText);
     } catch (error) {
       console.error('Error sending order to Google Sheet:', error);
+      alert('Erreur de connexion. Veuillez vérifier votre connexion internet.');
     }
   };
 
