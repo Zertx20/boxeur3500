@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import OrderForm from './OrderForm';
+import OrderFormNew from './OrderFormNew';
 
 declare global {
   interface Window {
@@ -398,7 +398,7 @@ export default function Hero() {
             </div>
 
             {/* Order Form - Desktop */}
-            <OrderForm selectedPrice={packPrice} selectedBrand={selectedBrand} selectedSize={selectedSize} />
+            <OrderFormNew selectedPrice={packPrice} selectedBrand={selectedBrand} selectedSize={selectedSize} />
 
             {/* Trust Badges - Desktop */}
             <div className="mt-8 grid grid-cols-4 gap-4">
@@ -433,7 +433,7 @@ export default function Hero() {
       <div id="order-form-section" className="lg:hidden px-4 pb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Complétez votre commande</h2>
         
-        <OrderForm selectedPrice={packPrice} selectedBrand={selectedBrand} selectedSize={selectedSize} />
+        <OrderFormNew selectedPrice={packPrice} selectedBrand={selectedBrand} selectedSize={selectedSize} />
       </div>
     </section>
   );
