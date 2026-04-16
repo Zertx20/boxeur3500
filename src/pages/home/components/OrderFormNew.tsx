@@ -29,10 +29,7 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
   const [showSuccess, setShowSuccess] = useState(false);
 
   // Wilaya-specific pricing for home delivery
-  const getDeliveryFee = (wilaya: string, mode: 'home' | 'desk') => {
-    if (mode === 'desk') return 400;
-    
-    const wilayaPrices: { [key: string]: number } = {
+  const wilayaPrices: { [key: string]: number } = {
       '01 أدرار': 900, '02 الشلف': 1000, '03 الأغواط': 1300, '04 أم البواقي': 1000,
       '05 باتنة': 700, '06 بسكرة': 1100, '07 بجاية': 850, '08 بشار': 1400,
       '09 البليدة': 950, '10 بسكرة': 1100, '11 تمنراست': 1000, '12 تبسة': 600,
@@ -86,6 +83,9 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
       '153 ورقلة': 1100, '154 تيزي وزو': 400, '155 تيزي وزو': 400,
       '156 تيزي وزو': 850, '157 المدية': 850, '158 مستغانم': 850
     };
+
+  const getDeliveryFee = (wilaya: string, mode: 'home' | 'desk') => {
+    if (mode === 'desk') return 400;
     
     return wilayaPrices[wilaya] || 600; // Default to 600 if wilaya not found
   };

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Delivery Pricing</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-2xl font-bold mb-4">Test Wilaya Pricing</h1>
+        
+        <div class="mb-6">
+            <label class="block text-sm font-medium mb-2">Select Wilaya:</label>
+            <select id="wilaya" class="w-full p-2 border rounded" onchange="testPricing()">
+                <option value="">Choose a wilaya</option>
+                <option value="16 الجزائر">16 الجزائر</option>
+                <option value="01 أدرار">01 أدرار</option>
+                <option value="32 البيض">32 البيض</option>
+            </select>
+        </div>
+        
+        <div class="mb-6">
+            <label class="block text-sm font-medium mb-2">Delivery Mode:</label>
+            <select id="deliveryMode" class="w-full p-2 border rounded" onchange="testPricing()">
+                <option value="home">Home Delivery</option>
+                <option value="desk">Bureau Delivery</option>
+            </select>
+        </div>
+        
+        <div class="mb-4 p-4 bg-gray-100 rounded">
+            <h3 class="font-bold mb-2">Results:</h3>
+            <div id="results" class="space-y-2 text-sm"></div>
+        </div>
+    </div>
+
+    <script>
+        // Wilaya pricing (exact same as OrderFormNew)
+        const wilayaPrices = {
+            '16 الجزائر': 750, '01 أدرار': 900, '02 الشلف': 1000, '03 الأغواط': 1300, '04 أم البواقي': 1000,
+            '05 باتنة': 700, '06 بسكرة': 1100, '07 بجاية': 850, '08 بشار': 1400,
+            '09 البليدة': 950, '10 بسكرة': 1100, '11 تمنراست': 1000, '12 تبسة': 600,
+            '13 تلمسان': 850, '14 تيارت': 900, '15 تيزي وزو': 850,
+            '32 البيض': 1200, '33 إليزي': 1000, '34 برج بوعريريج': 650, '35 بومرداس': 700,
+            '36 الطارف': 400, '37 تندوف': 1000, '38 تيسمسيلت': 600,
+            '39 الوادي': 700, '40 خنشلة': 600, '41 سوق أهراس': 900,
+            '42 تيبازة': 700, '43 ميلة': 600, '44 عين الدفلى': 700,
+            '45 النعامة': 700, '46 عين تموشنت': 900, '47 غرداية': 1100,
+            '48 غليزان': 400, '49 غليزان': 900, '50 خنشلة': 600,
+            '51 ورقلة': 700, '52 سطيف': 900, '53 تلمسان': 400,
+            '54 تيارت': 900, '55 تيزي وزو': 400, '56 باتنة': 400,
+            '57 بسكرة': 600, '58 تلمسان': 900, '59 عين الدفلى': 400,
+            '60 سعيدة': 900, '61 سيدي بلعباس': 850, '62 عنابة': 900,
+            '63 قالمة': 900, '64 قسنطينة': 850, '65 المدية': 850,
+            '66 مستغانم': 850, '67 المسيلة': 600, '68 معسكر': 900,
+            '69 خنشلة': 600, '70 ورقلة': 1100, '71 وهران': 850,
+            '72 البيض': 1200, '73 إليزي': 1000, '74 برج بوعريريج': 700,
+            '75 بومرداس': 700, '76 الطارف': 400, '77 تندوف': 1000,
+            '78 تيسمسيلت': 600, '79 الوادي': 700, '80 خنشلة': 600,
+            '81 سوق أهراس': 900, '82 تيبازة': 700, '83 ميلة': 600,
+            '84 عين الدفلى': 700, '85 النعامة': 700, '86 عين تموشنت': 900,
+            '87 غرداية': 1100, '88 غليزان': 400, '89 غليزان': 900,
+            '90 خنشلة': 600, '91 ورقلة': 1100, '92 وهران': 850,
+            '93 البيض': 1200, '94 إليزي': 1000, '95 برج بوعريريج': 700,
+            '96 بومرداس': 700, '97 الطارف': 400, '98 تندوف': 1000,
+            '99 تيسمسيلت': 600, '100 الوادي': 700, '101 خنشلة': 600,
+            '102 ورقلة': 1100, '103 تيزي وزو': 400, '104 تيزي وزو': 400,
+            '105 تيزي وزو': 850, '106 المدية': 850, '107 مستغانم': 850,
+            '108 المسيلة': 900, '109 معسكر': 850, '110 خنشلة': 600,
+            '111 ورقلة': 1100, '112 وهران': 850, '113 البيض': 1200,
+            '114 إليزي': 1000, '115 برج بوعريريج': 700, '116 بومرداس': 700,
+            '117 الطارف': 400, '118 تندوف': 1000, '119 تيسمسيلت': 600,
+            '120 الوادي': 700, '121 خنشلة': 600, '122 ورقلة': 1100,
+            '123 وهران': 850, '124 البيض': 1200, '125 إليزي': 1000,
+            '126 برج بوعريريج': 700, '127 بومرداس': 700, '128 الطارف': 400,
+            '129 تندوف': 1000, '130 تيسمسيلت': 600, '131 الوادي': 700,
+            '132 خنشلة': 600, '133 ورقلة': 1100, '134 تيزي وزو': 400,
+            '135 تيزي وزو': 400, '136 تيزي وزو': 850, '137 المدية': 850,
+            '138 مستغانم': 850, '139 المسيلة': 900, '140 معسكر': 850,
+            '141 خنشلة': 600, '142 ورقلة': 1100, '143 وهران': 850,
+            '144 البيض': 1200, '145 إليزي': 1000, '146 برج بوعريريج': 700,
+            '147 بومرداس': 700, '148 الطارف': 400, '149 تندوف': 1000,
+            '150 تيسمسيلت': 600, '151 الوادي': 700, '152 خنشلة': 600,
+            '153 ورقلة': 1100, '154 تيزي وزو': 400, '155 تيزي وزو': 400,
+            '156 تيزي وزو': 850, '157 المدية': 850, '158 مستغانم': 850
+        };
+
+        function getDeliveryFee(wilaya, mode) {
+            if (mode === 'desk') return 400;
+            return wilayaPrices[wilaya] || 600;
+        }
+
+        function testPricing() {
+            const wilaya = document.getElementById('wilaya').value;
+            const deliveryMode = document.getElementById('deliveryMode').value;
+            const deliveryFee = getDeliveryFee(wilaya, deliveryMode);
+            const productPrice = 3500;
+            const totalPrice = productPrice + deliveryFee;
+
+            // Display results
+            const results = document.getElementById('results');
+            results.innerHTML = `
+                <div><strong>Selected Wilaya:</strong> ${wilaya}</div>
+                <div><strong>Delivery Mode:</strong> ${deliveryMode}</div>
+                <div><strong>Wilaya Price Lookup:</strong> ${wilayaPrices[wilaya] || 'Not found'}</div>
+                <div><strong>Delivery Fee:</strong> ${deliveryFee} DZD</div>
+                <div><strong>Product Price:</strong> ${productPrice} DZD</div>
+                <div><strong>Total Price:</strong> ${totalPrice} DZD</div>
+                <div><strong>Form Data:</strong> wilaya=${document.getElementById('wilaya').value}</div>
+                <hr>
+            `;
+        }
+    </script>
+</body>
+</html>

@@ -59,12 +59,7 @@ export default function Hero() {
     }
   };
 
-  const openWhatsApp = () => {
-    const phoneNumber = '+213781517318';
-    const message = encodeURIComponent('Bonjour, je souhaite commander les Boxeurs Anti-bactériens Pack de 3. Quelles sont les disponibilités et délais de livraison ?');
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
-  };
-
+  
   return (
     <section className="bg-white">
       {/* Floating WhatsApp Button */}
