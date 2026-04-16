@@ -1,34 +1,34 @@
 export default function Benefits() {
   const benefits = [
     {
-      icon: 'ri-time-line',
-      title: 'جمع التقييمات في 3 ثواني',
-      description: 'الزبون يكتب التقييم غير بقرب الهاتف. بلا تطبيق، بلا تعقيد.',
+      icon: 'ri-shield-check-line',
+      title: 'Tissu Anti-bactérien',
+      description: 'Protection hygiénique avancée qui élimine 99% des bactéries. Confort et sécurité toute la journée.',
+    },
+    {
+      icon: 'ri-heart-line',
+      title: 'Confort Ultra',
+      description: 'Tissu doux et élastique qui s\'adapte parfaitement à votre morphologie. Sans coutures irritantes.',
+    },
+    {
+      icon: 'ri-windy-line',
+      title: 'Matériau Respirant',
+      description: 'Technologie breathable qui évacue l\'humidité et maintient la fraîcheur. Idéal pour tous les jours.',
+    },
+    {
+      icon: 'ri-vip-crown-line',
+      title: 'Style Premium',
+      description: 'Design élégant des plus grandes marques: Louis Vuitton, Gucci, Hermès, Prada, Calvin Klein.',
+    },
+    {
+      icon: 'ri-eco-line',
+      title: 'Qualité Durable',
+      description: 'Matériaux de haute qualité qui résistent aux lavages répétés. Garantie de longévité.',
     },
     {
       icon: 'ri-money-dollar-circle-line',
-      title: 'بلا اشتراك شهري',
-      description: 'دفعة وحدة غير. تستعملها طول العمر بلا ما تخلص كل شهر.',
-    },
-    {
-      icon: 'ri-eye-line',
-      title: 'ترفع ترتيبك في Google',
-      description: 'كي يزيدو التقييمات الإيجابية، مشروعك يظهر الأول في البحث ويجيبلك زبائن جداد.',
-    },
-    {
-      icon: 'ri-smartphone-line',
-      title: 'تخدم مع جميع الهواتف',
-      description: 'كل الهواتف Android و iPhone الجديدة اللي فيهم NFC تخدم عادي.',
-    },
-    {
-      icon: 'ri-palette-line',
-      title: 'تصميم راقي',
-      description: 'شكل بريميوم للطابلة،  جدار أو البيرو . يتناسب مليح مع أي مكان.',
-    },
-    {
-      icon: 'ri-flashlight-line',
-      title: 'تصميم راقي',
-      description: 'انزع الغلاف اللاصق من الخلفية، لصقها وكملت. جاهزة للاستعمال.',
+      title: 'Pack Économique',
+      description: 'Pack de 3 boxeurs à prix avantageux. Économisez 30% par rapport à l\'achat unitaire.',
     },
   ];
 
@@ -44,12 +44,12 @@ export default function Benefits() {
     >
       <div className="max-w-7xl mx-auto pb-0">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4" dir="rtl">
-            ✨ وش هي لوحة Google NFC؟
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            🦠 Pourquoi Choisir nos Boxeurs Anti-bactériens ?
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto" dir="rtl">
-            لوحة ذكية تخلي الزبون يفتح صفحة التقييم في Google غير بقرب الهاتف، بلا تطبيق، بلا تعقيد.
-            حل بسيط وسريع يزيدلك التقييمات الإيجابية ويقوي سمعة مشروعك.
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            Découvrez le confort ultime avec notre collection premium de boxeurs anti-bactériens.
+            Alliant hygiène, style et durabilité pour une expérience inégalée au quotidien.
           </p>
         </div>
 
@@ -59,11 +59,11 @@ export default function Benefits() {
               key={index}
               className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-xl transition-all border border-gray-100 hover:-translate-y-1 cursor-pointer"
             >
-              <div className="w-14 h-14 bg-teal-50 rounded-xl flex items-center justify-center mb-6">
-                <i className={`${benefit.icon} text-teal-600 text-2xl w-6 h-6 flex items-center justify-center`}></i>
+              <div className="w-14 h-14 bg-black rounded-xl flex items-center justify-center mb-6">
+                <i className={`${benefit.icon} text-white text-2xl w-6 h-6 flex items-center justify-center`}></i>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3" dir="rtl">{benefit.title}</h3>
-              <p className="text-gray-600 leading-relaxed" dir="rtl">{benefit.description}</p>
+              <h3 className="text-xl font-bold text-gray-900 mb-3">{benefit.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
             </div>
           ))}
         </div>

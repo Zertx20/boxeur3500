@@ -5,16 +5,15 @@ export default function FinalCTA() {
 
   const openWhatsApp = () => {
     // Track Lead event when WhatsApp button is clicked in FinalCTA section
-    // This fires before opening WhatsApp to ensure tracking completes without blocking redirect
     if (typeof window !== 'undefined' && typeof window.fbq === 'function') {
       window.fbq('track', 'Lead', {
         content_name: 'WhatsApp Contact - Final CTA',
-        content_category: 'Contact'
+        content_category: 'Fashion'
       });
     }
     
-    const phoneNumber = '+213795651299';
-    const message = encodeURIComponent('Bonjour, je suis intéressé(e) par la Plaque Avis Google NFC. Pouvez-vous me donner plus d\'informations ?');
+    const phoneNumber = '+213781517318';
+    const message = encodeURIComponent('Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d\'informations ?');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
@@ -28,18 +27,18 @@ export default function FinalCTA() {
       {/* Content */}
       <div className="relative max-w-5xl mx-auto text-center">
         {/* Top Badge */}
-        <div className="inline-flex items-center gap-2 bg-teal-500/20 backdrop-blur-sm border border-teal-500/30 rounded-full px-6 py-3 mb-8">
-          <i className="ri-flashlight-fill text-teal-400 text-xl w-5 h-5 flex items-center justify-center"></i>
-          <span className="text-teal-300 font-semibold" dir="rtl">عرض محدود - خصم حتى 36%</span>
+        <div className="inline-flex items-center gap-2 bg-red-500/20 backdrop-blur-sm border border-red-500/30 rounded-full px-6 py-3 mb-8">
+          <i className="ri-alarm-warning-line text-red-400 text-xl w-5 h-5 flex items-center justify-center"></i>
+          <span className="text-red-300 font-semibold">Stock Limité - Dernière Chance!</span>
         </div>
 
         {/* Main Headlines */}
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight" dir="rtl">
-          خلي مشروعك الأفضل<br />في منطقتك
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+          Commandez الآن 🦠<br />Stock en Voie d\'Épuisement!
         </h2>
         
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed" dir="rtl">
-          ابدأ اليوم وخلي اسمك يبان في الخريطة
+        <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+          Les derniers packs de boxeurs anti-bactériens premium à prix réduit
         </p>
 
         {/* Value Propositions */}
@@ -48,24 +47,24 @@ export default function FinalCTA() {
             <div className="w-12 h-12 bg-teal-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
               <i className="ri-timer-flash-line text-teal-400 text-2xl w-6 h-6 flex items-center justify-center"></i>
             </div>
-            <h3 className="font-bold text-white mb-2" dir="rtl">نتائج سريعة</h3>
-            <p className="text-gray-400 text-sm" dir="rtl">شوف الفرق في أسبوع</p>
+            <h3 className="font-bold text-white mb-2">Livraison Express</h3>
+            <p className="text-gray-400 text-sm">Recevez en 48-72h</p>
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
             <div className="w-12 h-12 bg-emerald-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
               <i className="ri-shield-check-line text-emerald-400 text-2xl w-6 h-6 flex items-center justify-center"></i>
             </div>
-            <h3 className="font-bold text-white mb-2" dir="rtl">ضمان الجودة</h3>
-            <p className="text-gray-400 text-sm" dir="rtl">استرجاع مضمون 14 يوم</p>
+            <h3 className="font-bold text-white mb-2">Qualité Premium</h3>
+            <p className="text-gray-400 text-sm">Marques de luxe garanties</p>
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
             <div className="w-12 h-12 bg-cyan-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
               <i className="ri-customer-service-2-line text-cyan-400 text-2xl w-6 h-6 flex items-center justify-center"></i>
             </div>
-            <h3 className="font-bold text-white mb-2" dir="rtl">دعم 24/7</h3>
-            <p className="text-gray-400 text-sm" dir="rtl">فريقنا معاك دايما</p>
+            <h3 className="font-bold text-white mb-2">Support 24/7</h3>
+            <p className="text-gray-400 text-sm">Équipe toujours disponible</p>
           </div>
         </div>
 
@@ -73,10 +72,10 @@ export default function FinalCTA() {
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <button
             onClick={scrollToTop}
-            className="group bg-teal-500 hover:bg-teal-400 text-white font-bold px-10 py-5 rounded-full transition-all shadow-2xl whitespace-nowrap cursor-pointer inline-flex items-center gap-3 text-lg hover:scale-105"
+            className="group bg-red-500 hover:bg-red-600 text-white font-bold px-10 py-5 rounded-full transition-all shadow-2xl whitespace-nowrap cursor-pointer inline-flex items-center gap-3 text-lg hover:scale-105"
           >
-            <span dir="rtl">اطلبها الآن</span>
-            <i className="ri-arrow-up-line text-2xl w-6 h-6 flex items-center justify-center group-hover:translate-y-1 transition-transform"></i>
+            <span>Commander Maintenant</span>
+            <i className="ri-shopping-bag-2-line text-2xl w-6 h-6 flex items-center justify-center group-hover:translate-y-1 transition-transform"></i>
           </button>
 
           <button
@@ -84,23 +83,23 @@ export default function FinalCTA() {
             className="bg-white/10 backdrop-blur-sm hover:bg-white/20 border border-white/20 text-white font-bold px-8 py-5 rounded-full transition-all whitespace-nowrap cursor-pointer inline-flex items-center gap-3 text-lg"
           >
             <i className="ri-whatsapp-line text-2xl w-6 h-6 flex items-center justify-center"></i>
-            <span dir="rtl">تكلم معانا</span>
+            <span>WhatsApp</span>
           </button>
         </div>
 
         {/* Trust Indicators */}
         <div className="flex flex-wrap justify-center items-center gap-8 text-gray-400 text-sm">
           <div className="flex items-center gap-2">
-            <i className="ri-secure-payment-line text-teal-400 w-5 h-5 flex items-center justify-center"></i>
-            <span dir="rtl">دفع آمن 100%</span>
+            <i className="ri-truck-line text-white w-5 h-5 flex items-center justify-center"></i>
+            <span>Livraison 58 wilayas</span>
           </div>
           <div className="flex items-center gap-2">
-            <i className="ri-truck-line text-teal-400 w-5 h-5 flex items-center justify-center"></i>
-            <span dir="rtl">توصيل لكل الولايات</span>
+            <i className="ri-money-dollar-circle-line text-white w-5 h-5 flex items-center justify-center"></i>
+            <span>Paiement à la livraison</span>
           </div>
           <div className="flex items-center gap-2">
             <i className="ri-star-fill text-amber-400 w-5 h-5 flex items-center justify-center"></i>
-            <span dir="rtl">5000+ مشروع راضي</span>
+            <span>10,000+ clients satisfaits</span>
           </div>
         </div>
 
@@ -108,14 +107,14 @@ export default function FinalCTA() {
         <div className="mt-12 inline-block bg-red-500/20 backdrop-blur-sm border border-red-500/30 rounded-lg px-6 py-3">
           <p className="text-red-300 font-medium flex items-center gap-2 justify-center">
             <i className="ri-alarm-warning-line w-5 h-5 flex items-center justify-center"></i>
-            <span dir="rtl">⚠️ المخزون محدود - اطلب قبل ما يخلص</span>
+            <span>⚠️ Moins de 50 packs restants - Commandez maintenant!</span>
           </p>
         </div>
       </div>
 
       {/* Decorative Elements */}
-      <div className="absolute top-10 left-10 w-32 h-32 bg-teal-500/10 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-10 right-10 w-40 h-40 bg-cyan-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute top-10 left-10 w-32 h-32 bg-red-500/10 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-10 right-10 w-40 h-40 bg-gray-500/10 rounded-full blur-3xl"></div>
     </section>
   );
 }

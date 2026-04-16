@@ -8,26 +8,23 @@ declare global {
 }
 
 export default function Hero() {
-  const [selectedQuantity, setSelectedQuantity] = useState(1);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [selectedSize, setSelectedSize] = useState('M');
+  const [selectedBrand, setSelectedBrand] = useState('Louis Vuitton');
+  const [selectedImage, setSelectedImage] = useState('/IMG_8467.JPG.jpeg');
   const [showFloatingBar, setShowFloatingBar] = useState(true);
 
+  const brands = ['Louis Vuitton', 'Gucci', 'Hermès', 'Prada', 'Calvin Klein'];
+  const sizes = ['M', 'L', 'XL', '2XL'];
+
   const productImages = [
-    '/product-image-2.jpg',
-    '/product-image-3.jpg',
-    'https://static.readdy.ai/image/23c802d7f9313d983d4e57c3b073a22a/a6d6811163bcc17336b1418e22ff5673.jpeg',
-    '/product-image-4.jpg',
+    '/IMG_8467.JPG.jpeg',
+    '/IMG_8468.JPG.jpeg',
+    '/IMG_8470.JPG.jpeg'
   ];
+  const packPrice = 3500;
+  const oldPrice = 4500;
+  const discount = '-22%';
 
-  const pricingOptions = [
-    { qty: 1, price: 3500, oldPrice: 5000, discount: '-30%', label: '1 plaque' },
-    { qty: 2, price: 6500, oldPrice: 10000, discount: '-35%', label: '2 plaques' },
-    { qty: 3, price: 9500, oldPrice: 15000, discount: '-37%', label: '3 plaques' },
-    { qty: 4, price: 12500, oldPrice: 20000, discount: '-38%', label: '4 plaques' },
-    { qty: 5, price: 15000, oldPrice: 25000, discount: '-40%', label: '5 plaques' },
-  ];
-
-  const selectedOption = pricingOptions.find(opt => opt.qty === selectedQuantity) || pricingOptions[0];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -44,11 +41,15 @@ export default function Hero() {
   }, []);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % productImages.length);
+    const currentIndex = productImages.indexOf(selectedImage);
+    const nextIndex = (currentIndex + 1) % productImages.length;
+    setSelectedImage(productImages[nextIndex]);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + productImages.length) % productImages.length);
+    const currentIndex = productImages.indexOf(selectedImage);
+    const prevIndex = (currentIndex - 1 + productImages.length) % productImages.length;
+    setSelectedImage(productImages[prevIndex]);
   };
 
   const scrollToOrderForm = () => {
@@ -59,8 +60,8 @@ export default function Hero() {
   };
 
   const openWhatsApp = () => {
-    const phoneNumber = '+213795651299';
-    const message = encodeURIComponent('Bonjour, je suis intéressé(e) par la Plaque Avis Google NFC. Pouvez-vous me donner plus d\'informations ?');
+    const phoneNumber = '+213781517318';
+    const message = encodeURIComponent('Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d\'informations ?');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
@@ -69,13 +70,13 @@ export default function Hero() {
       {/* Floating WhatsApp Button */}
       <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
         <div className="bg-white rounded-lg shadow-lg p-2 text-xs text-gray-700 font-medium">
-          +213 795 65 12 99
+          +213 781 51 73 18
         </div>
         <a
-          href="https://wa.me/213795651299?text=Bonjour, je suis intéressé(e) par la Plaque Avis Google NFC. Pouvez-vous me donner plus d'informations ?"
+          href="https://wa.me/213781517318?text=Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d'informations ?"
           target="_blank"
           rel="noopener noreferrer"
-          onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Commande Carte NFC'}); }}
+          onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Boxeur Anti-bactérien'}); }}
           className="bg-green-500 hover:bg-green-600 text-white rounded-full shadow-lg p-4 transition-all transform hover:scale-110 flex items-center justify-center"
           aria-label="Contactez-nous sur WhatsApp"
         >
@@ -88,8 +89,8 @@ export default function Hero() {
         <div className="relative w-full bg-gray-50">
           <div className="relative w-full aspect-square overflow-hidden">
             <img 
-              src={productImages[currentImageIndex]} 
-              alt={`Plaque Avis Google NFC - Digifeel vue ${currentImageIndex + 1}`}
+              src={selectedImage} 
+              alt={`Boxeur Anti-bactérien ${selectedBrand} - Vue ${productImages.indexOf(selectedImage) + 1}`}
               className="w-full h-full object-contain"
             />
             
@@ -114,9 +115,9 @@ export default function Hero() {
               {productImages.map((_, idx) => (
                 <button
                   key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
+                  onClick={() => setSelectedImage(productImages[idx])}
                   className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                    idx === currentImageIndex ? 'bg-teal-600 w-6' : 'bg-white/60'
+                    idx === productImages.indexOf(selectedImage) ? 'bg-teal-600 w-6' : 'bg-white/60'
                   }`}
                   aria-label={`Voir image ${idx + 1}`}
                 />
@@ -128,32 +129,79 @@ export default function Hero() {
         {/* Product Info - Mobile */}
         <div className="px-4 py-6 pb-32">
           <div className="flex items-center justify-between mb-3">
-            <span className="inline-block bg-teal-50 text-teal-600 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide">
-              Nouvelle Collection
+            <span className="inline-block bg-black text-white px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide">
+              Collection Premium
             </span>
             <div className="flex items-center gap-2 bg-amber-50 px-3 py-1.5 rounded-full">
               <i className="ri-star-fill text-amber-400 text-base w-4 h-4 flex items-center justify-center"></i>
               <span className="text-sm font-bold text-gray-900">4.9</span>
-              <span className="text-xs text-gray-600">(148 avis)</span>
+              <span className="text-xs text-gray-600">(248 avis)</span>
             </div>
           </div>
 
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Plaque connectée NFC
+            Boxeur Anti-bactérien 🦠
           </h1>
 
-          <div className="bg-gradient-to-br from-teal-50 to-emerald-50 rounded-2xl p-4 mb-4 border border-teal-100">
+          {/* Brand Selector - Mobile */}
+          <div className="mb-4">
+            <h3 className="text-sm font-semibold text-gray-900 mb-2">Choisissez votre marque</h3>
+            <div className="grid grid-cols-2 gap-2">
+              {brands.map((brand) => (
+                <button
+                  key={brand}
+                  onClick={() => {
+                    setSelectedBrand(brand);
+                    setSelectedImage(productImages[0]);
+                  }}
+                  className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
+                    selectedBrand === brand
+                      ? 'bg-black text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {brand}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Size Selector - Mobile */}
+          <div className="mb-4">
+            <h3 className="text-sm font-semibold text-gray-900 mb-2">Taille</h3>
+            <div className="flex gap-2">
+              {sizes.map((size) => (
+                <button
+                  key={size}
+                  onClick={() => setSelectedSize(size)}
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                    selectedSize === size
+                      ? 'bg-black text-white'
+                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                  }`}
+                >
+                  {size}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-2xl p-4 mb-4 border border-gray-200">
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-xs font-medium text-gray-600">Pack de 3 boxeurs</span>
+              <span className="inline-block bg-red-500 text-white px-2 py-1 rounded text-xs font-bold">{discount}</span>
+            </div>
             <div className="flex items-baseline justify-between mb-2">
-              <span className="text-3xl font-bold text-gray-900">{selectedOption.price.toLocaleString()} DZD</span>
-              <span className="text-lg text-gray-400 line-through">{selectedOption.oldPrice.toLocaleString()} DZD</span>
+              <span className="text-3xl font-bold text-gray-900">{packPrice.toLocaleString()} DZD</span>
+              <span className="text-lg text-gray-400 line-through">{oldPrice.toLocaleString()} DZD</span>
             </div>
             <div className="flex items-center justify-between">
               <span className="text-sm font-medium text-gray-700">TOTAL À PAYER:</span>
-              <span className="text-2xl font-bold text-teal-600">{selectedOption.price.toLocaleString()} DZD</span>
+              <span className="text-2xl font-bold text-black">{packPrice.toLocaleString()} DZD</span>
             </div>
             <div className="mt-3 inline-flex items-center bg-green-100 text-green-700 px-3 py-1.5 rounded-full text-sm font-semibold">
               <i className="ri-check-line mr-1.5 w-4 h-4 flex items-center justify-center"></i>
-              Économisez {(selectedOption.oldPrice - selectedOption.price).toLocaleString()} DZD ({selectedOption.discount})
+              Économisez {(oldPrice - packPrice).toLocaleString()} DZD ({discount})
             </div>
           </div>
 
@@ -164,18 +212,18 @@ export default function Hero() {
               <p className="text-xs text-gray-600 font-medium">Paiement sécurisé</p>
             </div>
             <div className="text-center p-3 bg-gray-50 rounded-lg">
-              <i className="ri-truck-line text-teal-600 text-xl mb-1.5 w-5 h-5 flex items-center justify-center mx-auto"></i>
-              <p className="text-xs text-gray-600 font-medium">Livraison 48h-72h</p>
+              <i className="ri-truck-line text-black text-xl mb-1.5 w-5 h-5 flex items-center justify-center mx-auto"></i>
+              <p className="text-xs text-gray-600 font-medium">Livraison 58 wilayas</p>
             </div>
             <div className="text-center p-3 bg-gray-50 rounded-lg">
               <i className="ri-customer-service-2-line text-teal-600 text-xl mb-1.5 w-5 h-5 flex items-center justify-center mx-auto"></i>
               <p className="text-xs text-gray-600 font-medium">Support 24/7</p>
             </div>
             <a
-              href="https://wa.me/213795651299?text=Bonjour, je suis intéressé(e) par la Plaque Avis Google NFC. Pouvez-vous me donner plus d'informations ?"
+              href="https://wa.me/213781517318?text=Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d'informations ?"
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Commande Carte NFC'}); }}
+              onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Boxeur Anti-bactérien'}); }}
               className="text-center p-3 bg-green-50 rounded-lg hover:bg-green-100 transition-colors cursor-pointer"
             >
               <i className="ri-whatsapp-line text-green-600 text-xl mb-1.5 w-5 h-5 flex items-center justify-center mx-auto"></i>
@@ -191,21 +239,21 @@ export default function Hero() {
               {/* Left Side - Price Info */}
               <div className="flex-1">
                 <div className="flex items-baseline gap-2 mb-0.5">
-                  <span className="text-2xl font-bold text-gray-900">{selectedOption.price.toLocaleString()}</span>
+                  <span className="text-2xl font-bold text-gray-900">{packPrice.toLocaleString()}</span>
                   <span className="text-sm text-gray-900">DZD</span>
                 </div>
                 <p className="text-xs text-gray-500 font-medium">TOTAL À PAYER</p>
                 <p className="text-xs text-green-600 font-semibold mt-0.5">
-                  Économisez {(selectedOption.oldPrice - selectedOption.price).toLocaleString()} DZD
+                  Économisez {(oldPrice - packPrice).toLocaleString()} DZD
                 </p>
               </div>
 
               {/* Right Side - Commander Button */}
               <button
                 onClick={scrollToOrderForm}
-                className="bg-gray-900 hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-full shadow-lg whitespace-nowrap cursor-pointer flex items-center gap-2 transition-all"
+                className="bg-black hover:bg-gray-800 text-white font-bold py-4 px-8 rounded-full shadow-lg whitespace-nowrap cursor-pointer flex items-center gap-2 transition-all"
               >
-                <span className="text-base">Commander</span>
+                <span className="text-base">Commander maintenant</span>
                 <i className="ri-arrow-down-line text-lg w-5 h-5 flex items-center justify-center"></i>
               </button>
             </div>
@@ -221,23 +269,65 @@ export default function Hero() {
             <div className="sticky top-8">
               <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
                 <img 
-                  src={productImages[currentImageIndex]} 
-                  alt="Plaque Avis Google NFC - Digifeel pour collecter des avis clients avec technologie NFC sans contact"
+                  src={selectedImage}
+                  alt={`Boxeur Anti-bactérien ${selectedBrand} - Vue ${productImages.indexOf(selectedImage) + 1}`}
                   className="w-full h-auto object-contain rounded-lg"
                 />
+              </div>
+
+              {/* Brand Selector - Desktop */}
+              <div className="mt-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Choisissez votre marque</h3>
+                <div className="grid grid-cols-5 gap-2">
+                  {brands.map((brand) => (
+                    <button
+                      key={brand}
+                      onClick={() => {
+                        setSelectedBrand(brand);
+                      }}
+                      className={`px-3 py-2 rounded-lg text-sm font-medium transition-all ${
+                        selectedBrand === brand
+                          ? 'bg-black text-white'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      {brand}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Size Selector - Desktop */}
+              <div className="mt-4">
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">Taille</h3>
+                <div className="flex gap-2">
+                  {sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setSelectedSize(size)}
+                      className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                        selectedSize === size
+                          ? 'bg-black text-white'
+                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      }`}
+                    >
+                      {size}
+                    </button>
+                  ))}
+                </div>
               </div>
               <div className="mt-6 grid grid-cols-4 gap-3">
                 {productImages.map((img, i) => (
                   <div 
                     key={i} 
-                    onClick={() => setCurrentImageIndex(i)}
+                    onClick={() => setSelectedImage(img)}
                     className={`bg-gray-50 rounded-lg p-3 cursor-pointer transition-all ${
-                      currentImageIndex === i ? 'ring-2 ring-teal-500' : 'hover:ring-2 hover:ring-gray-300'
+                      selectedImage === img ? 'ring-2 ring-black' : 'hover:ring-2 hover:ring-gray-300'
                     }`}
                   >
                     <img 
                       src={img}
-                      alt={`Vue ${i + 1} de la plaque avis Google NFC`}
+                      alt={`Vue ${i + 1} du boxeur ${selectedBrand}`}
                       className="w-full h-auto object-cover rounded"
                     />
                   </div>
@@ -249,13 +339,14 @@ export default function Hero() {
           {/* Product Info - Desktop */}
           <div className="w-full">
             <div className="mb-4">
-              <span className="inline-block bg-teal-50 text-teal-600 px-4 py-2 rounded-full text-sm font-medium">
-                Nouvelle Collection
+              <span className="inline-block bg-black text-white px-4 py-2 rounded-full text-sm font-medium">
+                Collection Premium
               </span>
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Plaque Avis Google NFC
+              Boxeur Anti-bactérien 🦠<br/>
+              <span className="text-xl md:text-2xl font-normal text-gray-600">Confort & Hygiène Premium</span>
             </h1>
 
             <div className="flex items-center gap-4 mb-6">
@@ -269,72 +360,65 @@ export default function Hero() {
             </div>
 
             <div className="flex items-baseline gap-4 mb-6">
-              <span className="text-4xl font-bold text-gray-900">{selectedOption.price.toLocaleString()} DZD</span>
-              <span className="text-xl text-gray-400 line-through">{selectedOption.oldPrice.toLocaleString()} DZD</span>
-              <span className="bg-red-50 text-red-600 px-3 py-1 rounded-full text-sm font-medium">
-                Économisez {(selectedOption.oldPrice - selectedOption.price).toLocaleString()} DZD ({selectedOption.discount})
+              <span className="text-4xl font-bold text-gray-900">{packPrice.toLocaleString()} DZD</span>
+              <span className="text-xl text-gray-400 line-through">{oldPrice.toLocaleString()} DZD</span>
+              <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-medium">
+                {discount} - Pack de 3
               </span>
             </div>
 
-            {/* Quantity Options - Desktop */}
+            <div className="bg-gray-50 rounded-lg p-4 mb-6">
+              <p className="text-sm text-gray-600 mb-2">Marque sélectionnée:</p>
+              <p className="text-lg font-bold text-black">{selectedBrand}</p>
+              <p className="text-sm text-gray-600 mt-2">Taille sélectionnée:</p>
+              <p className="text-lg font-bold text-black">{selectedSize}</p>
+            </div>
+
+            {/* Product Features */}
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Choisissez votre option</h3>
-              <div className="space-y-3">
-                {pricingOptions.map((option) => (
-                  <div
-                    key={option.qty}
-                    onClick={() => setSelectedQuantity(option.qty)}
-                    className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
-                      selectedQuantity === option.qty
-                        ? 'border-teal-500 bg-teal-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-3">
-                        <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                          selectedQuantity === option.qty
-                            ? 'border-teal-500 bg-teal-500'
-                            : 'border-gray-300'
-                        }`}>
-                          {selectedQuantity === option.qty && (
-                            <i className="ri-check-line text-white text-sm w-4 h-4 flex items-center justify-center"></i>
-                          )}
-                        </div>
-                        <span className="font-medium text-gray-900">{option.label}</span>
-                      </div>
-                      <div className="text-right">
-                        <span className="font-bold text-gray-900">{option.price.toLocaleString()} DZD</span>
-                        <span className="ml-3 text-sm text-teal-600 font-medium">{option.discount}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">Caractéristiques Premium</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center gap-3">
+                  <i className="ri-shield-check-line text-black text-xl w-5 h-5 flex items-center justify-center"></i>
+                  <span className="text-sm text-gray-700">Tissu anti-bactérien</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <i className="ri-heart-line text-black text-xl w-5 h-5 flex items-center justify-center"></i>
+                  <span className="text-sm text-gray-700">Confort ultra</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <i className="ri-windy-line text-black text-xl w-5 h-5 flex items-center justify-center"></i>
+                  <span className="text-sm text-gray-700">Tissu respirant</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <i className="ri-vip-crown-line text-black text-xl w-5 h-5 flex items-center justify-center"></i>
+                  <span className="text-sm text-gray-700">Style premium</span>
+                </div>
               </div>
             </div>
 
             {/* Order Form - Desktop */}
-            <OrderForm selectedPrice={selectedOption.price} selectedQuantity={selectedQuantity} />
+            <OrderForm selectedPrice={packPrice} selectedBrand={selectedBrand} selectedSize={selectedSize} />
 
             {/* Trust Badges - Desktop */}
             <div className="mt-8 grid grid-cols-4 gap-4">
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <i className="ri-shield-check-line text-teal-600 text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
-                <p className="text-xs text-gray-600 font-medium">Paiement sécurisé</p>
+                <i className="ri-shield-check-line text-black text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
+                <p className="text-xs text-gray-600 font-medium">Paiement à la livraison</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <i className="ri-truck-line text-teal-600 text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
-                <p className="text-xs text-gray-600 font-medium">Livraison 48h-72h</p>
+                <i className="ri-truck-line text-black text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
+                <p className="text-xs text-gray-600 font-medium">Livraison 58 wilayas</p>
               </div>
               <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <i className="ri-customer-service-2-line text-teal-600 text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
+                <i className="ri-customer-service-2-line text-black text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
                 <p className="text-xs text-gray-600 font-medium">Support 24/7</p>
               </div>
               <a
-                href="https://wa.me/213795651299?text=Bonjour, je suis intéressé(e) par la Plaque Avis Google NFC. Pouvez-vous me donner plus d'informations ?"
+                href="https://wa.me/213781517318?text=Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d'informations ?"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Commande Carte NFC'}); }}
+                onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Boxeur Anti-bactérien'}); }}
                 className="text-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors cursor-pointer"
               >
                 <i className="ri-whatsapp-line text-green-600 text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
@@ -349,44 +433,7 @@ export default function Hero() {
       <div id="order-form-section" className="lg:hidden px-4 pb-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">Complétez votre commande</h2>
         
-        {/* Quantity Options - Mobile */}
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Choisissez votre option</h3>
-          <div className="space-y-3">
-            {pricingOptions.map((option) => (
-              <div
-                key={option.qty}
-                onClick={() => setSelectedQuantity(option.qty)}
-                className={`border-2 rounded-lg p-4 cursor-pointer transition-all ${
-                  selectedQuantity === option.qty
-                    ? 'border-teal-500 bg-teal-50'
-                    : 'border-gray-200 hover:border-gray-300'
-                }`}
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
-                      selectedQuantity === option.qty
-                        ? 'border-teal-500 bg-teal-500'
-                        : 'border-gray-300'
-                    }`}>
-                      {selectedQuantity === option.qty && (
-                        <i className="ri-check-line text-white text-sm w-4 h-4 flex items-center justify-center"></i>
-                      )}
-                    </div>
-                    <span className="font-medium text-gray-900">{option.label}</span>
-                  </div>
-                  <div className="text-right">
-                    <span className="font-bold text-gray-900">{option.price.toLocaleString()} DZD</span>
-                    <span className="ml-2 text-sm text-teal-600 font-medium">{option.discount}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <OrderForm selectedPrice={selectedOption.price} selectedQuantity={selectedQuantity} />
+        <OrderForm selectedPrice={packPrice} selectedBrand={selectedBrand} selectedSize={selectedSize} />
       </div>
     </section>
   );
