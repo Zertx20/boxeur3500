@@ -32,7 +32,7 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
   const sendOrderToGoogleSheet = async (orderData: any) => {
     try {
       console.log('Sending order data:', orderData);
-      console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbzkaudJBLApsTvRs0Yj6DasqIZVwpdEp8x37rAV1_A23fB2wmoXLKmWiQvqvtTGMfurWA/exec');
+      console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbz3jjGG9qZsEsPE66Vnmri3bAA0EqepLdHM159OQuTkaG94TBZYYGJscMeVZENgdlOInw/exec');
       
       // Use fetch with URL-encoded data to avoid redirects
       const formData = new URLSearchParams();
@@ -40,7 +40,7 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
         formData.append(key, orderData[key]);
       });
       
-      const response = await fetch('https://script.google.com/macros/s/AKfycbzkaudJBLApsTvRs0Yj6DasqIZVwpdEp8x37rAV1_A23fB2wmoXLKmWiQvqvtTGMfurWA/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbz3jjGG9qZsEsPE66Vnmri3bAA0EqepLdHM159OQuTkaG94TBZYYGJscMeVZENgdlOInw/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
