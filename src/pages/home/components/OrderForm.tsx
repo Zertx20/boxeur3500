@@ -38,7 +38,6 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
       const form = document.createElement('form');
       form.method = 'POST';
       form.action = 'https://script.google.com/macros/s/AKfycbzkaudJBLApsTvRs0Yj6DasqIZVwpdEp8x37rAV1_A23fB2wmoXLKmWiQvqvtTGMfurWA/exec';
-      form.target = '_blank';
       
       // Add form data as hidden inputs
       Object.keys(orderData).forEach(key => {
