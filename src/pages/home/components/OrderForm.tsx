@@ -32,12 +32,12 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
   const sendOrderToGoogleSheet = async (orderData: any) => {
     try {
       console.log('Sending order data:', orderData);
-      console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbw7lDU96Yxq34ZrQc_ujYyhJA0uE1L6vw1bc2JutalM-xSZzoBjIKrBi30q77eG6R5DZw/exec');
+      console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbzkaudJBLApsTvRs0Yj6DasqIZVwpdEp8x37rAV1_A23fB2wmoXLKmWiQvqvtTGMfurWA/exec');
       
       // Create a hidden form and submit it
       const form = document.createElement('form');
       form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbw7lDU96Yxq34ZrQc_ujYyhJA0uE1L6vw1bc2JutalM-xSZzoBjIKrBi30q77eG6R5DZw/exec';
+      form.action = 'https://script.google.com/macros/s/AKfycbzkaudJBLApsTvRs0Yj6DasqIZVwpdEp8x37rAV1_A23fB2wmoXLKmWiQvqvtTGMfurWA/exec';
       form.target = '_blank';
       
       // Add form data as hidden inputs
