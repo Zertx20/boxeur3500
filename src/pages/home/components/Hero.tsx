@@ -61,7 +61,7 @@ export default function Hero() {
 
   const openWhatsApp = () => {
     const phoneNumber = '+213781517318';
-    const message = encodeURIComponent('Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d\'informations ?');
+    const message = encodeURIComponent('Bonjour, je souhaite commander les Boxeurs Anti-bactériens Pack de 3. Quelles sont les disponibilités et délais de livraison ?');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
 
@@ -73,7 +73,7 @@ export default function Hero() {
           +213 781 51 73 18
         </div>
         <a
-          href="https://wa.me/213781517318?text=Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d'informations ?"
+          href="https://wa.me/213781517318?text=Bonjour, je souhaite commander les Boxeurs Anti-bactériens Pack de 3. Quelles sont les disponibilités et délais de livraison ?"
           target="_blank"
           rel="noopener noreferrer"
           onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Boxeur Anti-bactérien'}); }}
@@ -220,7 +220,7 @@ export default function Hero() {
               <p className="text-xs text-gray-600 font-medium">Support 24/7</p>
             </div>
             <a
-              href="https://wa.me/213781517318?text=Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d'informations ?"
+              href="https://wa.me/213781517318?text=Bonjour, je souhaite commander les Boxeurs Anti-bactériens Pack de 3. Quelles sont les disponibilités et délais de livraison ?"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Boxeur Anti-bactérien'}); }}
@@ -415,7 +415,7 @@ export default function Hero() {
                 <p className="text-xs text-gray-600 font-medium">Support 24/7</p>
               </div>
               <a
-                href="https://wa.me/213781517318?text=Bonjour, je suis intéressé(e) par les Boxeurs Anti-bactériens. Pouvez-vous me donner plus d'informations ?"
+                href="https://wa.me/213781517318?text=Bonjour, je souhaite commander les Boxeurs Anti-bactériens Pack de 3. Quelles sont les disponibilités et délais de livraison ?"
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Boxeur Anti-bactérien'}); }}
