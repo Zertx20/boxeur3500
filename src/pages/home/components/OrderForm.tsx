@@ -32,20 +32,19 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
   const sendOrderToGoogleSheet = async (orderData: any) => {
     try {
       console.log('Sending order data:', orderData);
-      console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbz3jjGG9qZsEsPE66Vnmri3bAA0EqepLdHM159OQuTkaG94TBZYYGJscMeVZENgdlOInw/exec');
+      console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbzucbFQZ7xjqRnEKFhdxQgYE90YhGZZLMXeDYqTHcfkNc-Vfdgcwd4jlkrsQJ7DiJz11w/exec');
       
-      // Use fetch with URL-encoded data to avoid redirects
-      const formData = new URLSearchParams();
-      Object.keys(orderData).forEach(key => {
-        formData.append(key, orderData[key]);
-      });
+      // Send data as URL-encoded string
+      const urlEncodedData = Object.keys(orderData)
+        .map(key => `${encodeURIComponent(key)}=${encodeURIComponent(orderData[key])}`)
+        .join('&');
       
-      const response = await fetch('https://script.google.com/macros/s/AKfycbz3jjGG9qZsEsPE66Vnmri3bAA0EqepLdHM159OQuTkaG94TBZYYGJscMeVZENgdlOInw/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzucbFQZ7xjqRnEKFhdxQgYE90YhGZZLMXeDYqTHcfkNc-Vfdgcwd4jlkrsQJ7DiJz11w/exec', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: formData.toString()
+        body: urlEncodedData
       });
       
       console.log('Order sent to Google Sheet successfully');
