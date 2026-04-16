@@ -285,7 +285,7 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
                     <p className="text-sm text-gray-500">Livraison 58 wilayas</p>
                   </div>
                 </div>
-                <span className="font-semibold text-gray-900">600 DZD</span>
+                <span className="font-semibold text-gray-900">{deliveryFee.toLocaleString()} DZD</span>
               </div>
             </div>
 
@@ -310,7 +310,7 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
                   </div>
                   <div>
                     <p className="font-medium text-gray-900">Bureau (Stop Desk)</p>
-                    <p className="text-sm text-gray-500">Retrait au bureau</p>
+                    <p className="text-sm text-gray-500">Retrait au bureau - {getDeliveryFee(formData.wilaya, 'desk').toLocaleString()} DZD</p>
                   </div>
                 </div>
                 <span className="font-semibold text-gray-900">400 DZD</span>
