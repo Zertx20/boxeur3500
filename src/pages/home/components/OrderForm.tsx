@@ -34,28 +34,27 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
       console.log('Sending order data:', orderData);
       console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbw7lDU96Yxq34ZrQc_ujYyhJA0uE1L6vw1bc2JutalM-xSZzoBjIKrBi30q77eG6R5DZw/exec');
       
-      const response = await fetch('https://script.google.com/macros/s/AKfycbw7lDU96Yxq34ZrQc_ujYyhJA0uE1L6vw1bc2JutalM-xSZzoBjIKrBi30q77eG6R5DZw/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(orderData)
+      // Create a hidden form and submit it
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = 'https://script.google.com/macros/s/AKfycbw7lDU96Yxq34ZrQc_ujYyhJA0uE1L6vw1bc2JutalM-xSZzoBjIKrBi30q77eG6R5DZw/exec';
+      form.target = '_blank';
+      
+      // Add form data as hidden inputs
+      Object.keys(orderData).forEach(key => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = orderData[key];
+        form.appendChild(input);
       });
       
-      console.log('Response status:', response.status);
-      console.log('Response headers:', response.headers);
+      // Submit the form
+      document.body.appendChild(form);
+      form.submit();
+      document.body.removeChild(form);
       
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('HTTP Error:', response.status, errorText);
-        alert('Erreur de connexion au serveur. Veuillez réessayer plus tard.');
-        return;
-      }
-      
-      const responseText = await response.text();
-      console.log('Order sent to Google Sheet successfully');
-      console.log('Response:', responseText);
+      console.log('Order submitted via form to Google Sheet');
     } catch (error) {
       console.error('Error sending order to Google Sheet:', error);
       alert('Erreur de connexion. Veuillez vérifier votre connexion internet.');
