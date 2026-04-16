@@ -93,6 +93,16 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
   const deliveryFee = getDeliveryFee(formData.wilaya, deliveryMode);
   const totalPrice = selectedPrice + deliveryFee;
 
+  // Debug logging
+  console.log('=== DELIVERY PRICING DEBUG ===');
+  console.log('Selected wilaya:', formData.wilaya);
+  console.log('Delivery mode:', deliveryMode);
+  console.log('Wilaya price lookup:', wilayaPrices[formData.wilaya]);
+  console.log('Calculated delivery fee:', deliveryFee);
+  console.log('Product price:', selectedPrice);
+  console.log('Total price:', totalPrice);
+  console.log('=== END DEBUG ===');
+
   const sendOrderToGoogleSheet = async (orderData: any) => {
     try {
       console.log('Sending order data:', orderData);
