@@ -34,26 +34,22 @@ export default function OrderForm({ selectedPrice, selectedBrand, selectedSize }
       console.log('Sending order data:', orderData);
       console.log('Sending to URL:', 'https://script.google.com/macros/s/AKfycbzkaudJBLApsTvRs0Yj6DasqIZVwpdEp8x37rAV1_A23fB2wmoXLKmWiQvqvtTGMfurWA/exec');
       
-      // Create a hidden form and submit it
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = 'https://script.google.com/macros/s/AKfycbzkaudJBLApsTvRs0Yj6DasqIZVwpdEp8x37rAV1_A23fB2wmoXLKmWiQvqvtTGMfurWA/exec';
-      
-      // Add form data as hidden inputs
+      // Use fetch with URL-encoded data to avoid redirects
+      const formData = new URLSearchParams();
       Object.keys(orderData).forEach(key => {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = orderData[key];
-        form.appendChild(input);
+        formData.append(key, orderData[key]);
       });
       
-      // Submit the form
-      document.body.appendChild(form);
-      form.submit();
-      document.body.removeChild(form);
+      const response = await fetch('https://script.google.com/macros/s/AKfycbzkaudJBLApsTvRs0Yj6DasqIZVwpdEp8x37rAV1_A23fB2wmoXLKmWiQvqvtTGMfurWA/exec', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: formData.toString()
+      });
       
-      console.log('Order submitted via form to Google Sheet');
+      console.log('Order sent to Google Sheet successfully');
+      console.log('Response:', response);
     } catch (error) {
       console.error('Error sending order to Google Sheet:', error);
       alert('Erreur de connexion. Veuillez vérifier votre connexion internet.');
