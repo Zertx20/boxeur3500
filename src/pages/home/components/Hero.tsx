@@ -123,19 +123,9 @@ export default function Hero() {
 
         {/* Product Info - Mobile */}
         <div className="px-4 py-6 pb-32">
-          <div className="flex items-center justify-between mb-3">
-            <span className="inline-block bg-black text-white px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide">
-              Collection Premium
-            </span>
-            <div className="flex items-center gap-2 bg-amber-50 px-3 py-1.5 rounded-full">
-              <i className="ri-star-fill text-amber-400 text-base w-4 h-4 flex items-center justify-center"></i>
-              <span className="text-sm font-bold text-gray-900">4.9</span>
-              <span className="text-xs text-gray-600">(248 avis)</span>
-            </div>
-          </div>
 
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Boxeur Anti-bactérien 🦠
+            Boxeur Anti-bactérien Pack de 3
           </h1>
 
           {/* Brand Selector - Mobile */}
@@ -362,71 +352,18 @@ export default function Hero() {
               </span>
             </div>
 
-            <div className="bg-gray-50 rounded-lg p-4 mb-6">
-              <p className="text-sm text-gray-600 mb-2">Marque sélectionnée:</p>
-              <p className="text-lg font-bold text-black">{selectedBrand}</p>
-              <p className="text-sm text-gray-600 mt-2">Taille sélectionnée:</p>
-              <p className="text-lg font-bold text-black">{selectedSize}</p>
-            </div>
 
-            {/* Product Features */}
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Caractéristiques Premium</h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="flex items-center gap-3">
-                  <i className="ri-shield-check-line text-black text-xl w-5 h-5 flex items-center justify-center"></i>
-                  <span className="text-sm text-gray-700">Tissu anti-bactérien</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <i className="ri-heart-line text-black text-xl w-5 h-5 flex items-center justify-center"></i>
-                  <span className="text-sm text-gray-700">Confort ultra</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <i className="ri-windy-line text-black text-xl w-5 h-5 flex items-center justify-center"></i>
-                  <span className="text-sm text-gray-700">Tissu respirant</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <i className="ri-vip-crown-line text-black text-xl w-5 h-5 flex items-center justify-center"></i>
-                  <span className="text-sm text-gray-700">Style premium</span>
-                </div>
-              </div>
-            </div>
 
             {/* Order Form - Desktop */}
             <OrderFormNew selectedPrice={packPrice} selectedBrand={selectedBrand} selectedSize={selectedSize} />
 
-            {/* Trust Badges - Desktop */}
-            <div className="mt-8 grid grid-cols-4 gap-4">
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <i className="ri-shield-check-line text-black text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
-                <p className="text-xs text-gray-600 font-medium">Paiement à la livraison</p>
-              </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <i className="ri-truck-line text-black text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
-                <p className="text-xs text-gray-600 font-medium">Livraison 58 wilayas</p>
-              </div>
-              <div className="text-center p-4 bg-gray-50 rounded-lg">
-                <i className="ri-customer-service-2-line text-black text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
-                <p className="text-xs text-gray-600 font-medium">Support 24/7</p>
-              </div>
-              <a
-                href="https://wa.me/213781517318?text=Bonjour, je souhaite commander les Boxeurs Anti-bactériens Pack de 3. Quelles sont les disponibilités et délais de livraison ?"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => { if(typeof window !== 'undefined' && window.fbq) window.fbq('track', 'Lead', {content_name: 'Boxeur Anti-bactérien'}); }}
-                className="text-center p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors cursor-pointer"
-              >
-                <i className="ri-whatsapp-line text-green-600 text-2xl mb-2 w-6 h-6 flex items-center justify-center mx-auto"></i>
-                <p className="text-xs text-gray-600 font-medium">WhatsApp</p>
-              </a>
-            </div>
           </div>
         </div>
       </div>
 
       {/* Order Form Section - Mobile (scrolled to from button) */}
       <div id="order-form-section" className="lg:hidden px-4 pb-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Complétez votre commande</h2>
+        <h2 className="text-2xl font-bold text-gray-900 mb-6">Commander maintenant</h2>
         
         <OrderFormNew selectedPrice={packPrice} selectedBrand={selectedBrand} selectedSize={selectedSize} />
       </div>

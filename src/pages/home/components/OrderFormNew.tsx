@@ -191,20 +191,20 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
 
   return (
     <form onSubmit={handleSubmit} className="bg-white border-2 border-gray-200 rounded-2xl p-6 shadow-sm" id="order-form-section">
-      <h3 className="text-xl font-bold text-gray-900 mb-6">Commander votre pack</h3>
+      <h3 className="text-xl font-bold text-gray-900 mb-6">اطلب منتجك</h3>
       
       {/* Order Summary */}
       <div className="bg-gray-50 rounded-lg p-4 mb-6">
         <div className="flex justify-between text-sm text-gray-600 mb-2">
-          <span>Pack de 3 boxeurs ({selectedBrand})</span>
+          <span>سعر المنتج</span>
           <span>{selectedPrice.toLocaleString()} DZD</span>
         </div>
         <div className="flex justify-between text-sm text-gray-600 mb-2">
-          <span>Livraison ({deliveryMode === 'home' ? 'À domicile' : 'Stop Desk'})</span>
+          <span>التوصيل ({deliveryMode === 'home' ? 'للمنزل' : 'من المكتب'})</span>
           <span className="font-semibold text-gray-900">{deliveryFee.toLocaleString()} DZD</span>
         </div>
         <div className="border-t border-gray-200 pt-2 flex justify-between items-center">
-          <span className="text-lg font-bold text-gray-900">Total à payer</span>
+          <span className="text-lg font-bold text-gray-900">المجموع للدفع</span>
           <span className="text-2xl font-bold text-black">{totalPrice.toLocaleString()} DZD</span>
         </div>
       </div>
@@ -213,41 +213,41 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
       <div className="space-y-4">
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Nom complet <span className="text-red-500">*</span>
+            الاسم الكامل <span className="text-red-500">*</span>
           </label>
           <input
             type="text"
             value={formData.name}
             onChange={(e) => setFormData({...formData, name: e.target.value})}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-            placeholder="Votre nom complet"
+            placeholder="الاسم الكامل"
             required
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Téléphone <span className="text-red-500">*</span>
+            رقم الهاتف <span className="text-red-500">*</span>
           </label>
           <input
             type="tel"
             value={formData.phone}
             onChange={(e) => setFormData({...formData, phone: e.target.value})}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-            placeholder="Votre numéro de téléphone"
+            placeholder="رقم الهاتف"
             required
           />
         </div>
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Adresse <span className="text-red-500">*</span>
+            العنوان <span className="text-red-500">*</span>
           </label>
           <textarea
             value={formData.address}
             onChange={(e) => setFormData({...formData, address: e.target.value})}
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
-            placeholder="Votre adresse complète"
+            placeholder="العنوان الكامل"
             rows={3}
             required
           />
@@ -255,7 +255,7 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Wilaya <span className="text-red-500">*</span>
+            الولاية <span className="text-red-500">*</span>
           </label>
           <select
             value={formData.wilaya}
@@ -263,7 +263,7 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-transparent"
             required
           >
-            <option value="">Sélectionnez votre wilaya</option>
+            <option value="">اختر ولايتك</option>
             <option value="01 أدرار">01 أدرار</option>
             <option value="02 الشلف">02 الشلف</option>
             <option value="03 الأغواط">03 الأغواط</option>
@@ -318,7 +318,7 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
         {/* Delivery Mode Selection */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-3">
-            Mode de livraison <span className="text-red-500">*</span>
+            طريقة التوصيل <span className="text-red-500">*</span>
           </label>
           <div className="space-y-3">
             <div
@@ -341,8 +341,8 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
                     )}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">À domicile</p>
-                    <p className="text-sm text-gray-500">Livraison 58 wilayas (DEBUG: wilaya={formData.wilaya}, fee={getDeliveryFee(formData.wilaya, 'home').toLocaleString()} DZD)</p>
+                    <p className="font-medium text-gray-900">التوصيل للمنزل</p>
+                    <p className="text-sm text-gray-500">التوصيل لكل الولايات (السعر: {getDeliveryFee(formData.wilaya, 'home').toLocaleString()} دج)</p>
                   </div>
                 </div>
                 <span className="font-semibold text-gray-900">{getDeliveryFee(formData.wilaya, 'home').toLocaleString()} DZD</span>
@@ -369,8 +369,8 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
                     )}
                   </div>
                   <div>
-                    <p className="font-medium text-gray-900">Bureau (Stop Desk)</p>
-                    <p className="text-sm text-gray-500">Retrait au bureau - {getDeliveryFee(formData.wilaya, 'desk').toLocaleString()} DZD (DEBUG: wilaya={formData.wilaya})</p>
+                    <p className="font-medium text-gray-900">استلام من المكتب (Stop Desk)</p>
+                    <p className="text-sm text-gray-500">الاستلام من المكتب - {getDeliveryFee(formData.wilaya, 'desk').toLocaleString()} دج</p>
                   </div>
                 </div>
                 <span className="font-semibold text-gray-900">{getDeliveryFee(formData.wilaya, 'desk').toLocaleString()} DZD</span>
@@ -385,7 +385,7 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
           disabled={isSubmitting}
           className="w-full bg-black text-white py-3 px-6 rounded-lg font-semibold hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? 'Envoi en cours...' : 'Commander maintenant'}
+          {isSubmitting ? 'جاري الإرسال...' : 'اطلب الآن'}
         </button>
       </div>
 
@@ -396,20 +396,20 @@ export default function OrderForm({ selectedBrand, selectedSize, selectedPrice }
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <i className="ri-check-line text-green-600 text-2xl w-8 h-8 flex items-center justify-center"></i>
             </div>
-            <h3 className="text-2xl font-bold text-gray-900 mb-2">Commande envoyée avec succès!</h3>
+            <h3 className="text-2xl font-bold text-gray-900 mb-2">تم إرسال الطلب بنجاح!</h3>
             <p className="text-gray-600 mb-4">
-              Merci pour votre commande. Nous vous contacterons dans les plus brefs délais pour la livraison.
+              شكراً لطلبك. سنتواصل معك في أقرب وقت ممكن للتوصيل.
             </p>
             <p className="text-sm text-gray-500">
-              Numéro de commande: #{Math.random().toString(36).substr(2, 9)}
+              رقم الطلب: #{Math.random().toString(36).substr(2, 9)}
             </p>
             <div className="bg-gray-100 rounded-lg p-4">
-              <h4 className="font-semibold text-gray-900 mb-2">Prochaines étapes:</h4>
+              <h4 className="font-semibold text-gray-900 mb-2">الخطوات التالية:</h4>
               <ul className="space-y-2 text-sm text-gray-600">
-                <li>• Confirmation de votre commande par téléphone</li>
-                <li>• Préparation de votre pack (24-48h)</li>
-                <li>• Expédition vers votre wilaya</li>
-                <li>• Livraison à votre adresse</li>
+                <li>• تأكيد طلبك عبر الهاتف</li>
+                <li>• تجهيز طلبك (24-48 ساعة)</li>
+                <li>• الشحن إلى ولايتك</li>
+                <li>• التوصيل إلى عنوانك</li>
               </ul>
             </div>
           </div>
