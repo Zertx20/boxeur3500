@@ -3,11 +3,68 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Plaque Avis Google NFC Digifeel Algérie - Collectez Avis Clients</title>
-    <meta name="description" content="Plaque Avis Google NFC Digifeel en Algérie. Collectez des avis clients en 3 secondes avec technologie NFC. Livraison 48h-72h. Paiement unique, aucun abonnement. Boostez votre réputation Google." />
+    <title>Boxeur Anti-bactérien Premium - Confort & Hygiène | Livraison 58 Wilayas</title>
+    <meta name="description" content="Boxeur Anti-bactérien premium de luxe. Pack de 3 boxeurs à 3500 DA. Marques: Louis Vuitton, Gucci, Hermès, Prada, Calvin Klein. Livraison 58 wilayas, paiement à la livraison." />
+    <meta name="keywords" content="boxeur anti-bactérien, sous-vêtement luxe, louis vuitton, gucci, hermès, prada, calvin klein, algérie, livraison 58 wilayas" />
+    <link rel="canonical" href="https://yourdomain.com/" />
+    <meta name="last-modified" content="2025-01-01" />
 
-    <!-- Meta Pixel Code -->
+    <!-- Open Graph -->
+    <meta property="og:title" content="Boxeur Anti-bactérien Premium - Marques de Luxe" />
+    <meta property="og:description" content="Pack de 3 boxeurs anti-bactériens premium. Louis Vuitton, Gucci, Hermès, Prada, Calvin Klein. Livraison 58 wilayas." />
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="https://yourdomain.com/" />
+    <meta property="og:image" content="https://static.readdy.ai/image/23c802d7f9313d983d4e57c3b073a22a/a6d6811163bcc17336b1418e22ff5673.jpeg" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Boxeur Anti-bactérien Premium - Marques de Luxe" />
+    <meta name="twitter:description" content="Pack de 3 boxeurs anti-bactériens premium. Confort & hygiène garantis." />
+    <meta name="twitter:image" content="https://static.readdy.ai/image/23c802d7f9313d983d4e57c3b073a22a/a6d6811163bcc17336b1418e22ff5673.jpeg" />
+
+    <!-- Geo Tags -->
+    <meta name="geo.region" content="DZ" />
+    <meta name="geo.placename" content="Algérie" />
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Schema.org Product Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "Boxeur Anti-bactérien Premium - Pack de 3",
+      "image": "https://static.readdy.ai/image/23c802d7f9313d983d4e57c3b073a22a/a6d6811163bcc17336b1418e22ff5673.jpeg",
+      "description": "Pack de 3 boxeurs anti-bactériens premium. Marques de luxe: Louis Vuitton, Gucci, Hermès, Prada, Calvin Klein. Toutes tailles disponibles.",
+      "brand": {
+        "@type": "Brand",
+        "name": "Premium Underwear Collection"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "3500",
+        "priceCurrency": "DZD",
+        "availability": "https://schema.org/InStock",
+        "url": "https://yourdomain.com/"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "248"
+      }
+    }
+    </script>
+
+    <!-- Meta Pixel Code (Optimized for React SPA) -->
     <script>
+      // Meta Pixel Base Code - Load before React
       !function(f,b,e,v,n,t,s)
       {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -16,47 +73,136 @@
       t.src=v;s=b.getElementsByTagName(e)[0];
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
-      fbq('init', '1910072642926314'); 
+      
+      // Initialize Pixel
+      fbq('init', '1713094846204891'); 
+      
+      // Track initial PageView
+      fbq('track', 'PageView');
+      
+      // Store current path to prevent duplicate PageView
+      window.lastTrackedPath = window.location.pathname;
+      
+      // Enhanced Purchase Tracking for React SPA
+      window.trackPurchase = function() {
+        try {
+          // Robust selector for total price - handles multiple possible structures
+          let totalValue = 0;
+          
+          // Try different selectors for total price
+          const totalSelectors = [
+            '.text-teal-600', // Current selector for total price
+            '[class*="text-teal-600"]', // Backup selector
+            '.text-2xl.font-bold', // Another possible selector
+            'span:contains("DZD")' // Fallback selector
+          ];
+          
+          for (const selector of totalSelectors) {
+            const element = document.querySelector(selector);
+            if (element && element.textContent) {
+              // Extract numeric value from text like "3,500 DZD"
+              const numericValue = element.textContent.replace(/[^\d]/g, '');
+              totalValue = parseFloat(numericValue) || 0;
+              if (totalValue > 0) break; // Found valid price
+            }
+          }
+          
+          // Fallback to default price if extraction fails
+          if (totalValue === 0) {
+            totalValue = 3500; // Default base price
+          }
+          
+          // Track Purchase event
+          fbq('track', 'Purchase', {
+            value: totalValue,
+            currency: 'DZD',
+            content_type: 'product',
+            content_name: 'Boxeur Anti-bactérien Premium'
+          });
+          
+          console.log('Meta Pixel Purchase tracked:', { value: totalValue, currency: 'DZD' });
+        } catch (error) {
+          console.error('Error tracking Purchase:', error);
+        }
+      };
+      
+      // SPA PageView tracking for React Router
+      window.trackPageView = function(pathname) {
+        try {
+          if (window.lastTrackedPath !== pathname) {
+            fbq('track', 'PageView');
+            window.lastTrackedPath = pathname;
+            console.log('Meta Pixel PageView tracked for:', pathname);
+            
+            // Track ViewContent for fashion product on page load
+            fbq('track', 'ViewContent', {
+              content_name: 'Boxeur Anti-bactérien',
+              content_category: 'Fashion',
+              content_type: 'product',
+              value: 3500,
+              currency: 'DZD'
+            });
+          }
+        } catch (error) {
+          console.error('Error tracking PageView:', error);
+        }
+      };
     </script>
     <!-- End Meta Pixel -->
 
-    <script type="module" crossorigin src="/assets/index-BeGhhFKU.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-Bq_dZd8m.css">
+    <script type="module" crossorigin src="/assets/index-NoExXwgN.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DuWdfrHb.css">
   </head>
   <body>
-    <div id="root">
-      <!-- محتوى الصفحة الرئيسي يظهر هنا بواسطة React -->
-      <!-- مثال على زر Commander -->
-      <button type="submit">Commander</button>
-      <div class="total"><span>4100</span></div>
-    </div>
+    <div id="root"></div>
 
-
-    <!-- Trigger PageView بعد تحميل الصفحة -->
+    <!-- Enhanced Purchase Button Tracking -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-        fbq('track', 'PageView');
-      });
-    </script>
-
-    <!-- Track Purchase Button -->
-    <script>
-      document.addEventListener('click', function(e) {
-        if(e.target.matches('button[type="submit"]')) {
-          const totalElement = document.querySelector('.total span');
-          const value = totalElement ? parseFloat(totalElement.textContent.replace(/\D/g,'')) : 0;
-          fbq('track', 'Purchase', {
-            value: value,
-            currency: 'DZD'
+        // Wait for React to render, then attach event listeners
+        setTimeout(function() {
+          // Find all possible submit buttons (Commander buttons)
+          const submitButtons = document.querySelectorAll('button[type="submit"]');
+          
+          submitButtons.forEach(function(button) {
+            // Remove existing listeners to prevent duplicates
+            button.removeEventListener('click', window.trackPurchase);
+            
+            // Add new listener with enhanced tracking
+            button.addEventListener('click', function(event) {
+              // Track purchase before form submission
+              window.trackPurchase();
+            });
           });
-        }
+          
+          console.log('Meta Pixel: Attached purchase tracking to', submitButtons.length, 'buttons');
+        }, 1000); // Wait 1 second for React to mount
+      });
+      
+      // Also handle dynamically added buttons (for SPA navigation)
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.addedNodes.length) {
+            const newButtons = document.querySelectorAll('button[type="submit"]:not([data-pixel-tracked])');
+            newButtons.forEach(function(button) {
+              button.setAttribute('data-pixel-tracked', 'true');
+              button.addEventListener('click', window.trackPurchase);
+            });
+          }
+        });
+      });
+      
+      // Start observing for dynamic content
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true
       });
     </script>
 
     <!-- Meta Pixel NoScript -->
     <noscript>
       <img height="1" width="1" style="display:none"
-      src="https://www.facebook.com/tr?id=1910072642926314&ev=PageView&noscript=1"/>
+      src="https://www.facebook.com/tr?id=1713094846204891&ev=PageView&noscript=1"/>
     </noscript>
   </body>
 </html>

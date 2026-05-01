@@ -107,7 +107,7 @@ export default function HowItWorks() {
                 <div className="text-sm text-gray-300">Livraison rapide</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">
-                <div className="text-3xl font-bold text-white mb-1">3500 DA</div>
+                <div className="text-3xl font-bold text-white mb-1">3800 DA</div>
                 <div className="text-sm text-gray-300">Pack de 3</div>
               </div>
               <div className="bg-white/10 backdrop-blur-sm rounded-xl px-6 py-4">

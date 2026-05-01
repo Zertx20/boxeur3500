@@ -10,20 +10,15 @@ declare global {
 export default function Hero() {
   const [selectedSize, setSelectedSize] = useState('M');
   const [selectedBrand, setSelectedBrand] = useState('Louis Vuitton');
-  const [selectedImage, setSelectedImage] = useState('/IMG_8467.JPG.jpeg');
   const [showFloatingBar, setShowFloatingBar] = useState(true);
 
   const brands = ['Louis Vuitton', 'Gucci', 'Hermès', 'Prada', 'Calvin Klein'];
-  const sizes = ['M', 'L', 'XL', '2XL'];
+  const sizes = ['M', 'L', 'XL', '2XL', '3XL'];
 
-  const productImages = [
-    '/IMG_8467.JPG.jpeg',
-    '/IMG_8468.JPG.jpeg',
-    '/IMG_8470.JPG.jpeg'
-  ];
-  const packPrice = 3500;
-  const oldPrice = 4500;
-  const discount = '-22%';
+  const productImage = '/boxer-product.jpg';
+  const packPrice = 3800;
+  const oldPrice = 4400;
+  const discount = '-14%';
 
 
   useEffect(() => {
@@ -40,18 +35,7 @@ export default function Hero() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const nextImage = () => {
-    const currentIndex = productImages.indexOf(selectedImage);
-    const nextIndex = (currentIndex + 1) % productImages.length;
-    setSelectedImage(productImages[nextIndex]);
-  };
-
-  const prevImage = () => {
-    const currentIndex = productImages.indexOf(selectedImage);
-    const prevIndex = (currentIndex - 1 + productImages.length) % productImages.length;
-    setSelectedImage(productImages[prevIndex]);
-  };
-
+  
   const scrollToOrderForm = () => {
     const orderFormElement = document.getElementById('order-form-section');
     if (orderFormElement) {
@@ -80,44 +64,14 @@ export default function Hero() {
       </div>
       {/* Mobile Layout - Image Carousel First */}
       <div className="lg:hidden">
-        {/* Image Carousel */}
+        {/* Product Image */}
         <div className="relative w-full bg-gray-50">
           <div className="relative w-full aspect-square overflow-hidden">
             <img 
-              src={selectedImage} 
-              alt={`Boxeur Anti-bactérien ${selectedBrand} - Vue ${productImages.indexOf(selectedImage) + 1}`}
+              src={productImage} 
+              alt={`Boxeur Anti-bactérien ${selectedBrand}`}
               className="w-full h-full object-contain"
             />
-            
-            {/* Carousel Navigation */}
-            <button 
-              onClick={prevImage}
-              className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center cursor-pointer transition-all z-10"
-              aria-label="Image précédente"
-            >
-              <i className="ri-arrow-left-s-line text-gray-900 text-xl w-6 h-6 flex items-center justify-center"></i>
-            </button>
-            <button 
-              onClick={nextImage}
-              className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 hover:bg-white rounded-full shadow-lg flex items-center justify-center cursor-pointer transition-all z-10"
-              aria-label="Image suivante"
-            >
-              <i className="ri-arrow-right-s-line text-gray-900 text-xl w-6 h-6 flex items-center justify-center"></i>
-            </button>
-
-            {/* Dots Indicator */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-              {productImages.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setSelectedImage(productImages[idx])}
-                  className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                    idx === productImages.indexOf(selectedImage) ? 'bg-teal-600 w-6' : 'bg-white/60'
-                  }`}
-                  aria-label={`Voir image ${idx + 1}`}
-                />
-              ))}
-            </div>
           </div>
         </div>
 
@@ -137,7 +91,6 @@ export default function Hero() {
                   key={brand}
                   onClick={() => {
                     setSelectedBrand(brand);
-                    setSelectedImage(productImages[0]);
                   }}
                   className={`px-3 py-2 rounded-lg text-xs font-medium transition-all ${
                     selectedBrand === brand
@@ -254,8 +207,8 @@ export default function Hero() {
             <div className="sticky top-8">
               <div className="bg-gray-50 rounded-2xl p-8 shadow-sm">
                 <img 
-                  src={selectedImage}
-                  alt={`Boxeur Anti-bactérien ${selectedBrand} - Vue ${productImages.indexOf(selectedImage) + 1}`}
+                  src={productImage}
+                  alt={`Boxeur Anti-bactérien ${selectedBrand}`}
                   className="w-full h-auto object-contain rounded-lg"
                 />
               </div>
@@ -300,23 +253,6 @@ export default function Hero() {
                     </button>
                   ))}
                 </div>
-              </div>
-              <div className="mt-6 grid grid-cols-4 gap-3">
-                {productImages.map((img, i) => (
-                  <div 
-                    key={i} 
-                    onClick={() => setSelectedImage(img)}
-                    className={`bg-gray-50 rounded-lg p-3 cursor-pointer transition-all ${
-                      selectedImage === img ? 'ring-2 ring-black' : 'hover:ring-2 hover:ring-gray-300'
-                    }`}
-                  >
-                    <img 
-                      src={img}
-                      alt={`Vue ${i + 1} du boxeur ${selectedBrand}`}
-                      className="w-full h-auto object-cover rounded"
-                    />
-                  </div>
-                ))}
               </div>
             </div>
           </div>
