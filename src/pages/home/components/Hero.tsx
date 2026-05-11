@@ -8,14 +8,23 @@ declare global {
 }
 
 export default function Hero() {
-  const [selectedSize, setSelectedSize] = useState('M');
+  const [selectedSize, setSelectedSize] = useState('4XL');
   const [selectedBrand, setSelectedBrand] = useState('Louis Vuitton');
   const [showFloatingBar, setShowFloatingBar] = useState(true);
 
-  const brands = ['Louis Vuitton', 'Gucci', 'Hermès', 'Prada', 'Calvin Klein'];
-  const sizes = ['M', 'L', 'XL', '2XL', '3XL'];
+  const brands = ['Boss', 'Prada', 'Hermès', 'Gucci', 'Balenciaga', 'Louis Vuitton'];
+  const sizes = ['L', 'XL', '2XL', '3XL', '4XL'];
 
-  const productImage = '/boxer-product.jpg';
+  const brandImages: { [key: string]: string } = {
+    'Boss': '/brand-boss.png',
+    'Prada': '/brand-prada.png',
+    'Hermès': '/brand-hermes.png',
+    'Gucci': '/brand-gucci.png',
+    'Balenciaga': '/brand-balenciaga.png',
+    'Louis Vuitton': '/brand-louis-vuitton.png'
+  };
+
+  const productImage = brandImages[selectedBrand] || '/boxer-product.jpg';
   const packPrice = 3800;
   const oldPrice = 4400;
   const discount = '-14%';
