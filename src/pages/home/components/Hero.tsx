@@ -13,7 +13,7 @@ export default function Hero() {
   const [showFloatingBar, setShowFloatingBar] = useState(true);
 
   const brands = ['Boss', 'Prada', 'Hermès', 'Gucci', 'Balenciaga', 'Louis Vuitton'];
-  const sizes = ['L', 'XL', '2XL', '3XL', '4XL'];
+  const sizes = ['M', 'L', 'XL', '2XL', '3XL', '4XL'];
 
   const brandImages: { [key: string]: string } = {
     'Boss': '/brand-boss.png',
